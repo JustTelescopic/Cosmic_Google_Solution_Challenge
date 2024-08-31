@@ -5,6 +5,8 @@ import Onboarding3 from "./onBoarding/Onboarding3";
 import Onboarding4 from "./onBoarding/Onboarding4";
 import Onboarding5 from "./onBoarding/Onboarding5";
 import Onboarding1 from "./onBoarding/Onboarding1";
+import CreateAccount from "./AccountCreation/createAccount";
+import VerifyOTP from "./AccountCreation/verifyOTP";
 
 export default function Page() {
   return (
@@ -12,6 +14,8 @@ export default function Page() {
       <View style={styles.onboarding_container}>
         {/* <SelectLang /> */}
         <Onboarding1/>
+        {/* <CreateAccount/> */}
+        {/* <VerifyOTP /> */}
       </View>
     </View>
   );

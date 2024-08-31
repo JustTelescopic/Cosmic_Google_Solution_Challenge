@@ -1,10 +1,10 @@
 // DotIndicator.jsx
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from "react";
+import { View, StyleSheet } from "react-native";
 
 const DotIndicator = ({ activeIndex, totalDots }) => {
   const dots = [];
-  
+
   for (let i = 0; i < totalDots; i++) {
     dots.push(
       <View
@@ -22,9 +22,9 @@ const DotIndicator = ({ activeIndex, totalDots }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 20,
   },
   dot: {
@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   activeDot: {
-    backgroundColor: '#6CCB2F',
+    backgroundColor: "#6CCB2F",
   },
   inactiveDot: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: "#d3d3d3",
   },
 });
 
