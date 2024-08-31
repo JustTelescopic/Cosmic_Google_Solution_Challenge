@@ -5,7 +5,7 @@ export default function NextButton({ title, onPress, accessibilityLabel }) {
   return (
     <TouchableOpacity style={styles.buttonContainer}>
       <LinearGradient
-        colors={['#A8E063', '#56AB2F']}
+        colors={["#A8E063", "#56AB2F"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.button}
@@ -19,14 +19,14 @@ export default function NextButton({ title, onPress, accessibilityLabel }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
   buttonContainer: {
-    width: 350,
+    width: 365,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 5,
@@ -36,14 +36,13 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 15,
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 355,
+    justifyContent: "center",
+    alignItems: "center",
+    width: 365,
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
-

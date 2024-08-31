@@ -9,13 +9,13 @@ import {
 import NextButton from "../../components/onBoarding/nextButton";
 import DotIndicator from "../../components/onBoarding/DotIndicator";
 
-const ButtonComponent = ({ text, hindiText, borderColor }) => {
+const ButtonComponent = ({ text, fulltext, borderColor }) => {
   return (
     <View style={{ alignItems: "center" }}>
       <TouchableOpacity style={[styles.button, { borderColor }]}>
-        <Text style={{ fontWeight: "bold", fontSize: 30 }}>हा</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 30 }}>{text}</Text>
       </TouchableOpacity>
-      <Text style={styles.buttonLowerText}>हिन्दी</Text>
+      <Text style={styles.buttonLowerText}>{fulltext}</Text>
     </View>
   );
 };
@@ -46,20 +46,48 @@ export default function SelectLang() {
           <Text style={styles.title}>Select a language</Text>
         </View>
         <View style={{ flexDirection: "row", marginBottom: 12 }}>
-          <ButtonComponent borderColor="#D4AF37" />
-          <ButtonComponent borderColor="#85BDB6" />
-          <ButtonComponent borderColor="#4F2D93" />
-          <ButtonComponent borderColor="#4A5AA8" />
+          <ButtonComponent
+            text={"ह"}
+            fulltext={"हिन्दी"}
+            borderColor="#D4AF37"
+          />
+          <ButtonComponent
+            text={"म"}
+            fulltext={"मराठी"}
+            borderColor="#85BDB6"
+          />
+          <ButtonComponent
+            text={"ব"}
+            fulltext={"বাংলা"}
+            borderColor="#4F2D93"
+          />
+          <ButtonComponent
+            text={"മ"}
+            fulltext={"മലയാളം"}
+            borderColor="#D24A52"
+          />
         </View>
         <View style={{ flexDirection: "row" }}>
-          <ButtonComponent borderColor="#4556D9" />
-          <ButtonComponent borderColor="#322C66" />
-          <ButtonComponent borderColor="#D24A52" />
+          <ButtonComponent
+            text={"த"}
+            fulltext={"தமிழ்"}
+            borderColor="#4556D9"
+          />
+          <ButtonComponent
+            text={"ગ"}
+            fulltext={"ગુજરાતી"}
+            borderColor="#322C66"
+          />
+          <ButtonComponent
+            text={"త"}
+            fulltext={"తెలుగు"}
+            borderColor="#4A5AA8"
+          />
         </View>
       </View>
 
       <View style={{ marginTop: 40 }}>
-        <DotIndicator activeIndex={0} totalDots={4} />
+        <DotIndicator activeIndex={1} totalDots={4} />
         <NextButton title={"Next"} />
       </View>
     </View>
