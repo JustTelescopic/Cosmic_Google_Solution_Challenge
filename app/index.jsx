@@ -7,13 +7,17 @@ import Onboarding5 from "./onBoarding/Onboarding5";
 import Onboarding1 from "./onBoarding/Onboarding1";
 import CreateAccount from "./AccountCreation/createAccount";
 import VerifyOTP from "./AccountCreation/verifyOTP";
+import LivestockTypeScreen from "./diagnosis/livestock";
+import CropTypeScreen from "./diagnosis/crop";
 
 export default function Page() {
   return (
     <View style={styles.container}>
       <View style={styles.onboarding_container}>
         {/* <SelectLang /> */}
-        <Onboarding1/>
+        {/* <Onboarding1/> */}
+        {/* <LivestockTypeScreen /> */}
+        <CropTypeScreen />
         {/* <CreateAccount/> */}
         {/* <VerifyOTP /> */}
       </View>

@@ -25,7 +25,7 @@ export default function Onboarding3() {
        {/* <Link  href="/onBoarding/Onboarding4">HI there
        </Link> */}
        <TouchableOpacity onPress={() => { router.push('/onBoarding/Onboarding4')}}>
-          <Text>hi there buddy  </Text>
+          {/* <Text>hi there buddy  </Text> */}
        </TouchableOpacity>
           <NextButton title="Next" onPress={() => { router.push('/onBoarding/Onboarding4')}} accessibilityLabel="Next" />
       </View>

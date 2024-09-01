@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity,SafeAreaViewBase, ViewBase }from 'react-native';
 import DotIndicator from '../../components/onBoarding/DotIndicator';
 import NextButton from '../../components/onBoarding/nextButton';
-
+import { router } from 'expo-router';
 
 
 
@@ -20,7 +20,7 @@ export default function Onboarding4() {
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         </Text>
        <DotIndicator activeIndex={2} totalDots={4}/>
-       <NextButton title="Next" onPress={() => {}} accessibilityLabel="Next" />
+       <NextButton title="Next" onPress={() => { router.push('/onBoarding/Onboarding5')}} accessibilityLabel="Next" />
       </View>
     </View>
   );

@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function NextButton({ title, onPress, accessibilityLabel }) {
   return (
-    <TouchableOpacity style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
       <LinearGradient
         colors={["#A8E063", "#56AB2F"]}
         start={{ x: 0, y: 0 }}
