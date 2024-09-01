@@ -8,7 +8,7 @@ import {
 import DotIndicator from "../../components/onBoarding/DotIndicator";
 import NextButton from "../../components/onBoarding/nextButton";
 
-export default function Onboarding3() {
+export default function OnBoarding3() {
   return (
     <View style={styles.container}>
       <Image
@@ -23,7 +23,7 @@ export default function Onboarding3() {
           nonumy
         </Text>
         <DotIndicator activeIndex={2} totalDots={6} />
-        <NextButton title={"Next"} destination={"/onboarding/onboarding4"} />
+        <NextButton title={"Next"} destination={"/onBoarding/onBoarding4"} />
       </View>
     </View>
   );

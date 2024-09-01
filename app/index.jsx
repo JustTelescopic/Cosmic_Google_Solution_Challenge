@@ -1,22 +1,12 @@
 import { StyleSheet,Text ,View } from "react-native";
-import SelectLang from "./onboarding/selectLang";
-import { Link } from "expo-router";
-import CreateAccount from "./AccountCreation/createAccount";
-import VerifyOTP from "./AccountCreation/verifyOTP";
-import LivestockTypeScreen from "./diagnosis/livestock";
-import CropTypeScreen from "./diagnosis/crop";
-
+import { Link, Redirect } from "expo-router";
+import SelectLang from "./onBoarding/selectLang";
 export default function Page() {
   return (
     <View>
       <View style={styles.onboarding_container}>
         <SelectLang />
-        {/* <SelectLang /> */}
-        {/* <Onboarding1/> */}
-        {/* <LivestockTypeScreen /> */}
-        {/* <CropTypeScreen /> */}
-        {/* <CreateAccount/> */}
-        {/* <VerifyOTP /> */}
+        {/* <Redirect href="/home" /> */}
       </View>
     </View>
   );

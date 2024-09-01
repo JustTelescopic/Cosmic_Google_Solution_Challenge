@@ -8,7 +8,7 @@ import {
 import DotIndicator from "../../components/onBoarding/DotIndicator";
 import NextButton from "../../components/onBoarding/nextButton";
 
-export default function Onboarding5() {
+export default function OnBoarding5() {
   return (
     <View style={styles.container}>
       <Image
