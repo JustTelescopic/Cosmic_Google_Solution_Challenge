@@ -7,6 +7,9 @@ import {
 } from "react-native";
 import DotIndicator from "../../components/onBoarding/DotIndicator";
 import NextButton from "../../components/onBoarding/nextButton";
+import { router } from 'expo-router';
+
+
 
 export default function Onboarding1() {
   return (
