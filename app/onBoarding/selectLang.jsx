@@ -87,7 +87,7 @@ export default function SelectLang() {
 
       <View style={{ marginTop: 40 }}>
         <DotIndicator activeIndex={0} totalDots={6} />
-        <NextButton title={"Next"} destination={"/onBoarding/onBoarding1"} />
+        <NextButton title={"Next"} destination={"/onboarding/onboarding1"} />
       </View>
     </View>
   );

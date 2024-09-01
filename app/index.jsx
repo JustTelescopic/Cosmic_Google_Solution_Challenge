@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import SelectLang from "./onBoarding/selectLang";
+import SelectLang from "./onboarding/selectLang";
 
 export default function Page() {
   return (

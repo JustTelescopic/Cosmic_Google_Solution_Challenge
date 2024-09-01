@@ -27,7 +27,7 @@ export default function Onboarding1() {
         <View style={styles.bgStop}></View>
         <View style={styles.btn_container}>
           <DotIndicator activeIndex={1} totalDots={6} />
-          <NextButton title={"Next"} destination={"/onBoarding/onBoarding3"} />
+          <NextButton title={"Next"} destination={"/onboarding/onboarding3"} />
         </View>
       </View>
     </View>

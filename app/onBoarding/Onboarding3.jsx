@@ -23,7 +23,7 @@ export default function Onboarding3() {
           nonumy
         </Text>
         <DotIndicator activeIndex={2} totalDots={6} />
-        <NextButton title={"Next"} destination={"/onBoarding/onBoarding4"} />
+        <NextButton title={"Next"} destination={"/onboarding/onboarding4"} />
       </View>
     </View>
   );
