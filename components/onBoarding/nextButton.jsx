@@ -1,18 +1,27 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router"; // Import useRouter from expo-router
 
-export default function NextButton({ title, onPress, accessibilityLabel }) {
+export default function NextButton({
+  title = "Next",
+  destination,
+  accessibilityLabel,
+}) {
+  const router = useRouter(); // Initialize the router
   return (
-    <TouchableOpacity style={styles.buttonContainer}>
+    <Pressable
+      style={styles.buttonContainer}
+      onPress={() => router.push(destination)}
+    >
       <LinearGradient
         colors={["#A8E063", "#56AB2F"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.button}
       >
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>{title}</Text>
       </LinearGradient>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

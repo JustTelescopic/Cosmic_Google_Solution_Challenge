@@ -1,5 +1,4 @@
 import {
-  Button,
   Image,
   StyleSheet,
   Text,
@@ -87,8 +86,8 @@ export default function SelectLang() {
       </View>
 
       <View style={{ marginTop: 40 }}>
-        <DotIndicator activeIndex={1} totalDots={4} />
-        <NextButton title={"Next"} />
+        <DotIndicator activeIndex={0} totalDots={6} />
+        <NextButton title={"Next"} destination={"/onBoarding/onBoarding1"} />
       </View>
     </View>
   );
