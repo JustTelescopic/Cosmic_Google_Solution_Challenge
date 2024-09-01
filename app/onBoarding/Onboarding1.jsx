@@ -7,11 +7,8 @@ import {
 } from "react-native";
 import DotIndicator from "../../components/onBoarding/DotIndicator";
 import NextButton from "../../components/onBoarding/nextButton";
-import { router } from 'expo-router';
 
-
-
-export default function Onboarding1() {
+export default function OnBoarding1() {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -30,7 +27,7 @@ export default function Onboarding1() {
         <View style={styles.bgStop}></View>
         <View style={styles.btn_container}>
           <DotIndicator activeIndex={1} totalDots={6} />
-          <NextButton title={"Next"} destination={"/onboarding/onboarding3"} />
+          <NextButton title={"Next"} destination={"/onBoarding/Onboarding3"} />
         </View>
       </View>
     </View>

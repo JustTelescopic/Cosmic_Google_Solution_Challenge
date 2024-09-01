@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     StyleSheet,
     Text,
@@ -15,8 +15,18 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Platform } from 'react-native';
 
 
-
+const inactiveOpacity=['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.4)']
+const activeOpacity=['rgba(0,0,0,0)', 'rgba(0,0,0,0)']
 const Selectrole = () => {
+  const [role,setRole]= useState(null);
+  const handleSelectRole = (roleType) => {
+    setRole(prev =>roleType)    
+    // if (roleType === 'farmer') {
+    //   router.push('/tabs/diagnosis/crop')
+    // } else if (roleType === 'veterinarian') {
+    //   router.push('/tabs/diagnosis/livestock')
+    // }
+  }
   return (
     <View style={styles.container}>
       {/* <View style={styles.textContainer}>
@@ -36,11 +46,11 @@ const Selectrole = () => {
       <View style={styles.imageContainer}>
         <View style={styles.cardContainer}>
         {/* Fruits row     */}
-        <TouchableOpacity style={styles.card}>  
+        <TouchableOpacity style={role =='farmer' ? [styles.card,styles.active] :  styles.card } onPress={() => handleSelectRole('farmer')}>  
           <ImageBackground source={require('../../assets/onboarding-assets/farmer.png')} style={styles.cardImage}
             imageStyle={{...styles.imagePosition,}}
           >
-          <LinearGradient colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.3)']} style={styles.gradient}>
+          <LinearGradient colors={role =='farmer'? activeOpacity :inactiveOpacity} style={styles.gradient}>
             <View style={styles.overlay}>
               <View style={styles.after_overlay}/>
 
@@ -51,11 +61,11 @@ const Selectrole = () => {
           </ImageBackground>
         </TouchableOpacity>
         <View style={{...styles.underline,transform : 'translateY(0)'}} />
-        <TouchableOpacity style={styles.card}>  
+        <TouchableOpacity style={role =='veterinarian' ? [styles.card,styles.active] :  styles.card } onPress={() => handleSelectRole('veterinarian')}>  
           <ImageBackground source={require('../../assets/onboarding-assets/veterinarian.png')} style={styles.cardImage}
             imageStyle={{...styles.imagePosition,}}
           >
-          <LinearGradient colors={['rgba(0,0,0,0.3)', 'rgba(0,0,0,0.3)']} style={styles.gradient}>
+          <LinearGradient colors={role =='veterinarian'? activeOpacity :inactiveOpacity} style={styles.gradient}>
             <View style={{...styles.overlay,left : 'unset' ,right : 0}}>
               <View style={styles.before_overlay}/>
 
@@ -73,7 +83,7 @@ const Selectrole = () => {
         <View style={styles.bgStop}></View> */}
         <View style={styles.btn_container}>
           <DotIndicator activeIndex={1} totalDots={6} />
-          <NextButton title={"Next"} destination={"/onboarding/onboarding3"} />
+          <NextButton title={"Next"} destination={"/home"} />
         </View>
       </View>
     </View>
@@ -248,13 +258,15 @@ card: {
     // borderLeftColor : 'transparent',
     // borderRightWidth : 3,
     // borderRightColor : 'transparent',
-    borderBottomWidth : 3,
-    borderBottomColor : '#0D4803',
     position : 'relative',
     borderRadius: 5,
     overflow: 'hidden',
     height: 150,
     width : '80%'
+  },
+  active : {
+    borderBottomWidth : 3,
+    borderBottomColor : '#0D4803',
   },
 cardImage: {
       height : '100%',
@@ -332,4 +344,4 @@ cardImage: {
   },
 });
 
-export default Selectrole
+export default Selectrole;

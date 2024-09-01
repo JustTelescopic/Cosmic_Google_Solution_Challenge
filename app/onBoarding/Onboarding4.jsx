@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import DotIndicator from "../../components/onBoarding/DotIndicator";
 import NextButton from "../../components/onBoarding/nextButton";
 
-export default function Onboarding4() {
+export default function OnBoarding4() {
   return (
     <View style={styles.container}>
       <Image
@@ -23,7 +18,7 @@ export default function Onboarding4() {
           nonumy
         </Text>
         <DotIndicator activeIndex={3} totalDots={6} />
-        <NextButton title={"Next"} destination={"/onboarding/onboarding5"} />
+        <NextButton title={"Next"} destination={"/onBoarding/Onboarding5"} />
       </View>
     </View>
   );

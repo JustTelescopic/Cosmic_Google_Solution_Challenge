@@ -3,22 +3,13 @@ import Feather from "@expo/vector-icons/Feather";
 
 export default function TabBar({ state, descriptors, navigation }) {
   const icon = {
-    index: (props) => (
-      <Feather name="home" size={24} color="black" {...props} />
-    ),
-    diagnosis: (props) => (
-      <Feather name="search" size={24} color="black" {...props} />
-    ),
-    reports: (props) => (
-      <Feather name="pie-chart" size={24} color="black" {...props} />
-    ),
-    alerts: (props) => (
-      <Feather name="clock" size={24} color="black" {...props} />
-    ),
-    profile: (props) => (
-      <Feather name="user" size={24} color="black" {...props} />
-    ),
+    home: "home",
+    diagnosis: "search",
+    reports: "pie-chart",
+    alerts: "clock",
+    profile: "user",
   };
+
   return (
     <View style={styles.TabBar}>
       {state.routes.map((route, index) => {
@@ -51,6 +42,11 @@ export default function TabBar({ state, descriptors, navigation }) {
           });
         };
 
+        // Only render tab items for routes that have an icon defined
+        if (!icon[route.name]) {
+          return null;
+        }
+
         return (
           <Pressable
             key={route.name}
@@ -65,9 +61,11 @@ export default function TabBar({ state, descriptors, navigation }) {
             onPress={onPress}
             onLongPress={onLongPress}
           >
-            {icon[route.name]({
-              color: isFocused ? "#245F1A" : "#222",
-            })}
+            <Feather
+              name={icon[route.name]}
+              size={24}
+              color={isFocused ? "#245F1A" : "#222"}
+            />
             <Text
               style={{
                 color: isFocused ? "#245F1A" : "#222",
