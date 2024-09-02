@@ -5,7 +5,7 @@ import {
   StyleSheet,
   ImageBackground,
   ScrollView,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -65,7 +65,10 @@ const extraFeatures = [
 const CropTypeScreen = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={{ paddingBottom: 100 }}
+      >
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Select Your Crop Type</Text>
           <View style={styles.underline} />
@@ -76,13 +79,29 @@ const CropTypeScreen = () => {
         </View>
         <View style={styles.cardContainer}>
           {/* Fruits row     */}
-          
+          <Pressable style={styles.card}>
+            <ImageBackground
+              source={fruitsData.image}
+              style={styles.cardImage}
+              imageStyle={{ ...styles.imagePosition }}
+            >
+              <LinearGradient
+                colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.4)"]}
+                style={styles.gradient}
+              >
+                <Text style={styles.cardTitle}>{fruitsData.type}</Text>
+                <Text style={styles.cardDescription}>
+                  {fruitsData.description}
+                </Text>
+              </LinearGradient>
+            </ImageBackground>
+          </Pressable>
 
           {/* Medicinal row */}
 
           <View style={styles.bottomCardContainer}>
             {topCropData.map((item, index) => (
-              <TouchableOpacity
+              <Pressable
                 key={index}
                 style={{ ...styles.card, flexBasis: "50%" }}
               >
@@ -101,11 +120,11 @@ const CropTypeScreen = () => {
                     </Text>
                   </LinearGradient>
                 </ImageBackground>
-              </TouchableOpacity>
+              </Pressable>
             ))}
           </View>
 
-          <TouchableOpacity style={styles.card}>
+          <Pressable style={styles.card}>
             <ImageBackground
               source={MedicinalData.image}
               style={styles.cardImage}
@@ -121,11 +140,11 @@ const CropTypeScreen = () => {
                 </Text>
               </LinearGradient>
             </ImageBackground>
-          </TouchableOpacity>
+          </Pressable>
 
           <View style={styles.bottomCardContainer}>
             {bottomCropData.map((item, index) => (
-              <TouchableOpacity
+              <Pressable
                 key={index}
                 style={{ ...styles.card, flexBasis: "50%" }}
               >
@@ -144,7 +163,7 @@ const CropTypeScreen = () => {
                     </Text>
                   </LinearGradient>
                 </ImageBackground>
-              </TouchableOpacity>
+              </Pressable>
             ))}
           </View>
         </View>
@@ -159,7 +178,7 @@ const CropTypeScreen = () => {
         </View>
         {/* <View style={styles.cardContainer}>
       {topLivestockData.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>  
+        <Pressable key={index} style={styles.card}>  
           <ImageBackground source={item.image} style={styles.cardImage}
             imageStyle={{...styles.imagePosition, top : index ==1 ? 0 : -60}}
           >
@@ -168,7 +187,7 @@ const CropTypeScreen = () => {
               <Text style={styles.cardDescription}>{item.description}</Text>
             </LinearGradient>
           </ImageBackground>
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </View> */}
         <View style={styles.cardContainer}>
@@ -185,9 +204,9 @@ const CropTypeScreen = () => {
                   <Text style={styles.cardDescription}>
                     {feature.description}
                   </Text>
-                  <TouchableOpacity style={styles.discoverBtnWrapper}>
+                  <Pressable style={styles.discoverBtnWrapper}>
                     <Text style={styles.discoverMore}>Discover more</Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 </LinearGradient>
               </ImageBackground>
             </View>
@@ -198,7 +217,7 @@ const CropTypeScreen = () => {
           <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.gradient}>
             <Text style={styles.cardTitle}>Vaccination</Text>
             <Text style={styles.cardDescription}>Regular immunization to prevent diseases.</Text>
-            <TouchableOpacity><Text style={styles.discoverMore}>Discover more</Text></TouchableOpacity>
+            <Pressable><Text style={styles.discoverMore}>Discover more</Text></Pressable>
           </LinearGradient>
         </ImageBackground>
       </View>
@@ -208,7 +227,7 @@ const CropTypeScreen = () => {
           <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.gradient}>
             <Text style={styles.cardTitle}>Proper nutrition</Text>
             <Text style={styles.cardDescription}>Balanced diet for healthy growth.</Text>
-            <TouchableOpacity><Text style={styles.discoverMore}>Discover more</Text></TouchableOpacity>
+            <Pressable><Text style={styles.discoverMore}>Discover more</Text></Pressable>
           </LinearGradient>
         </ImageBackground>
       </View>
@@ -218,7 +237,7 @@ const CropTypeScreen = () => {
           <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.gradient}>
             <Text style={styles.cardTitle}>Hygiene maintenance</Text>
             <Text style={styles.cardDescription}>Clean environment to reduce infections.</Text>
-            <TouchableOpacity><Text style={styles.discoverMore}>Discover more</Text></TouchableOpacity>
+            <Pressable><Text style={styles.discoverMore}>Discover more</Text></Pressable>
           </LinearGradient>
         </ImageBackground>
       </View> */}
@@ -280,7 +299,7 @@ const styles = StyleSheet.create({
   card: {
     flexBasis: "100%",
     // marginBottom: 8,
-    borderRadius: 5,
+    // borderRadius: 5,
     overflow: "hidden",
     height: 110,
   },
@@ -345,7 +364,7 @@ const styles = StyleSheet.create({
   underline: {
     width: "70%",
     height: 2,
-    backgroundColor: "#7CFC00",
+    backgroundColor: "#5BA93A",
     marginTop: 4,
     transform: "translateY(-10px)",
   },

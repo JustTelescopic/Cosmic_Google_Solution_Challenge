@@ -4,7 +4,7 @@ import {
   Text,
   View,
   ImageBackground,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -56,7 +56,7 @@ const extraFeatures = [
 export default function Diagnosis() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
         <View style={styles.headerContainer}>
           <Text style={styles.header}>Select Your Livestock Type</Text>
           <View style={styles.underline} />
@@ -67,10 +67,9 @@ export default function Diagnosis() {
         </View>
         <View style={styles.cardContainer}>
           {topLivestockData.map((item, index) => (
-            <TouchableOpacity
+            <Pressable
               key={index}
               style={styles.card}
-              onPress={() => router.push("/diagnosis/crop")}
             >
               <ImageBackground
                 source={item.image}
@@ -88,12 +87,12 @@ export default function Diagnosis() {
                   <Text style={styles.cardDescription}>{item.description}</Text>
                 </LinearGradient>
               </ImageBackground>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
         <View style={styles.bottomCardContainer}>
           {bottomLivestockData.map((item, index) => (
-            <TouchableOpacity
+            <Pressable
               key={index}
               style={{ ...styles.card, flexBasis: index == 0 ? "40%" : "60%" }}
             >
@@ -110,7 +109,7 @@ export default function Diagnosis() {
                   <Text style={styles.cardDescription}>{item.description}</Text>
                 </LinearGradient>
               </ImageBackground>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
         {/* <View style={styles.sectionHeaderContainer}>
@@ -125,7 +124,7 @@ export default function Diagnosis() {
         </View>
         {/* <View style={styles.cardContainer}>
       {topLivestockData.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.card}>  
+        <Pressable key={index} style={styles.card}>  
           <ImageBackground source={item.image} style={styles.cardImage}
             imageStyle={{...styles.imagePosition, top : index ==1 ? 0 : -60}}
           >
@@ -134,7 +133,7 @@ export default function Diagnosis() {
               <Text style={styles.cardDescription}>{item.description}</Text>
             </LinearGradient>
           </ImageBackground>
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </View> */}
         <View style={styles.cardContainer}>
@@ -151,9 +150,9 @@ export default function Diagnosis() {
                   <Text style={styles.cardDescription}>
                     {feature.description}
                   </Text>
-                  <TouchableOpacity style={styles.discoverBtnWrapper}>
+                  <Pressable style={styles.discoverBtnWrapper}>
                     <Text style={styles.discoverMore}>Discover more</Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 </LinearGradient>
               </ImageBackground>
             </View>
@@ -164,7 +163,7 @@ export default function Diagnosis() {
           <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.gradient}>
             <Text style={styles.cardTitle}>Vaccination</Text>
             <Text style={styles.cardDescription}>Regular immunization to prevent diseases.</Text>
-            <TouchableOpacity><Text style={styles.discoverMore}>Discover more</Text></TouchableOpacity>
+            <Pressable><Text style={styles.discoverMore}>Discover more</Text></Pressable>
           </LinearGradient>
         </ImageBackground>
       </View>
@@ -174,7 +173,7 @@ export default function Diagnosis() {
           <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.gradient}>
             <Text style={styles.cardTitle}>Proper nutrition</Text>
             <Text style={styles.cardDescription}>Balanced diet for healthy growth.</Text>
-            <TouchableOpacity><Text style={styles.discoverMore}>Discover more</Text></TouchableOpacity>
+            <Pressable><Text style={styles.discoverMore}>Discover more</Text></Pressable>
           </LinearGradient>
         </ImageBackground>
       </View>
@@ -184,7 +183,7 @@ export default function Diagnosis() {
           <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.gradient}>
             <Text style={styles.cardTitle}>Hygiene maintenance</Text>
             <Text style={styles.cardDescription}>Clean environment to reduce infections.</Text>
-            <TouchableOpacity><Text style={styles.discoverMore}>Discover more</Text></TouchableOpacity>
+            <Pressable><Text style={styles.discoverMore}>Discover more</Text></Pressable>
           </LinearGradient>
         </ImageBackground>
       </View> */}
@@ -196,9 +195,6 @@ export default function Diagnosis() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 16,
-    // alignItems : 'center',
-    backgroundColor: "#fff",
   },
   header: {
     fontSize: 24,
@@ -243,7 +239,7 @@ const styles = StyleSheet.create({
   card: {
     flexBasis: "100%",
     // marginBottom: 8,
-    borderRadius: 5,
+    // borderRadius: 11,
     overflow: "hidden",
     height: 110,
   },
@@ -308,12 +304,11 @@ const styles = StyleSheet.create({
   underline: {
     width: "70%",
     height: 2,
-    backgroundColor: "#7CFC00",
+    backgroundColor: "#5BA93A",
     marginTop: 4,
     transform: "translateY(-10px)",
   },
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff", // or any color you prefer
   },
 });
