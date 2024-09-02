@@ -7,83 +7,97 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome6";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import NextButton from "../../components/onBoarding/nextButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { height } = Dimensions.get("window");
 
 export default function VerifyOTP() {
   return (
-    <View style={styles.container}>
-      {/* Top Section */}
-      <View style={styles.topSection}>
-        <View style={styles.iconContainer}>
-          <Icon name="angle-left" size={35} />
-        </View>
-        <ImageBackground
-          source={require("../../assets/farmer.png")}
-          style={styles.backgroundImage}
-          imageStyle={styles.imageStyle}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <SafeAreaView style={styles.container}>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          keyboardShouldPersistTaps="handled"
         >
-          <View style={styles.greenCircle} />
-          <View style={styles.textContainer}>
-            <Text style={styles.overlayText}>
-              Nourishing Crops, Caring for Animals
-            </Text>
+          {/* Top Section */}
+          <View style={styles.topSection}>
+            <View style={styles.iconContainer}>
+              <Icon name="angle-left" size={35} />
+            </View>
+            <ImageBackground
+              source={require("../../assets/farmer.png")}
+              style={styles.backgroundImage}
+              imageStyle={styles.imageStyle}
+            >
+              <View style={styles.greenCircle} />
+              <View style={styles.textContainer}>
+                <Text style={styles.overlayText}>
+                  Nourishing Crops, Caring for Animals
+                </Text>
+              </View>
+            </ImageBackground>
           </View>
-        </ImageBackground>
-      </View>
 
-      {/* Bottom Section */}
-      <View style={styles.bottomSection}>
-        <View>
-          <View style={styles.inputContainer}>
-            <FeatherIcon name="phone" size={20} style={styles.inputIcon} />
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              maxLength={10} // Optional: Limit the number of digits
-              placeholder="Phone Number"
-            />
-            <TouchableOpacity style={styles.otpButton}>
-              <Text style={styles.otpButtonText}>Send OTP</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.inputContainer}>
-            <FeatherIcon name="lock" size={20} style={styles.inputIcon} />
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              maxLength={10} // Optional: Limit the number of digits
-              placeholder="Enter OTP"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "flex-end",
-              marginTop: 10,
-            }}
-          >
-            <TouchableOpacity>
-              <Text style={styles.resendOtpButtonText}>Resend OTP</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+          {/* Bottom Section */}
+          <View style={styles.bottomSection}>
+            <View>
+              <View style={styles.inputContainer}>
+                <FeatherIcon name="phone" size={20} style={styles.inputIcon} />
+                <TextInput
+                  style={styles.input}
+                  keyboardType="numeric"
+                  maxLength={10}
+                  placeholder="Phone Number"
+                />
+                <TouchableOpacity style={styles.otpButton}>
+                  <Text style={styles.otpButtonText}>Send OTP</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.inputContainer}>
+                <FeatherIcon name="lock" size={20} style={styles.inputIcon} />
+                <TextInput
+                  style={styles.input}
+                  keyboardType="numeric"
+                  maxLength={6} // Adjust OTP length as needed
+                  placeholder="Enter OTP"
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  marginTop: 10,
+                }}
+              >
+                <TouchableOpacity>
+                  <Text style={styles.resendOtpButtonText}>Resend OTP</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 30,
-          }}
-        >
-          <NextButton />
-        </View>
-      </View>
-    </View>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: 30,
+              }}
+            >
+              <NextButton  destination={'/home'}/>
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -108,8 +122,8 @@ const styles = StyleSheet.create({
   textContainer: {
     position: "absolute",
     top: 20, // Distance from the bottom of the image
-    left: 20, // Distance from the left edge of the image
-    right: 20, // Distance from the right edge of the image
+    left: 20,
+    right: 20,
     width: "50%",
   },
   overlayText: {
@@ -122,28 +136,19 @@ const styles = StyleSheet.create({
     padding: 17,
     backgroundColor: "#F4F5F9",
   },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  circleContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   greenCircle: {
     position: "absolute",
-    top: 20, // Distance from the bottom of the image
-    right: -20, // Distance from the right edge of the image
+    top: 20,
+    right: -20,
     width: 400,
     height: 400,
-    borderRadius: 200, // Half of the width and height to make it a circle
+    borderRadius: 200,
     backgroundColor: "#CAFF81",
-    zIndex: -1, // Place the circle behind the image
+    zIndex: -1,
   },
   imageStyle: {
     resizeMode: "cover",
-    right: -50, // Move the image to the right
+    right: -50,
     position: "absolute",
   },
   inputContainer: {

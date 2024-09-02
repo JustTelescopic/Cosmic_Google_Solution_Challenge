@@ -1,9 +1,9 @@
 import { StyleSheet,Text ,View } from "react-native";
 import SelectLang from "./onBoarding/selectLang";
-import CreateAccount from "./accountcreation/createAccount";
-import VerifyOTP from "./accountcreation/verifyotp";
 import { Link, Redirect } from "expo-router";
 import Selectrole from "./onBoarding/selectrole";
+import HandleCamera from "./onBoarding/Camera";
+import Userinput from "./(tabs)/userinput";
 
 
 export default function Page() {
@@ -11,8 +11,9 @@ export default function Page() {
     <View>
       <View style={styles.onboarding_container}>
         <SelectLang />
+        {/* <Userinput/> */}
+        {/* <HandleCamera /> */}
         {/* <Selectrole/> */}
-        {/* <VerifyOTP /> */}
         {/* <Redirect href="/home" /> */}
       </View>
     </View>
