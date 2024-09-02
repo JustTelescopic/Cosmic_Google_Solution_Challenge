@@ -2,6 +2,8 @@ import { StyleSheet,Text ,View } from "react-native";
 import SelectLang from "./onBoarding/selectLang";
 import { Link, Redirect } from "expo-router";
 import Selectrole from "./onBoarding/selectrole";
+import HandleCamera from "./onBoarding/Camera";
+import Userinput from "./(tabs)/userinput";
 
 
 export default function Page() {
@@ -12,6 +14,7 @@ export default function Page() {
         {/* <Selectrole/> */}
         {/* <VerifyOTP /> */}
         <Redirect href="/home" />
+
       </View>
     </View>
   );
