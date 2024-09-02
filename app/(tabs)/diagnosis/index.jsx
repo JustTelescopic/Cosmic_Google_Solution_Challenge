@@ -8,30 +8,35 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 
 const topLivestockData = [
   {
     type: "Cattle",
     description: "Lorem ipsum dolor sit amet.",
     image: require("../../../assets/diagosis-page-assets/cattle.png"),
+    navigation: "diagnosis/cattle",
   },
   {
-    type: "Goat",
+    type: "Ship",
     description: "Lorem ipsum dolor sit amet.",
     image: require("../../../assets/diagosis-page-assets/ship.png"),
+    navigation: "diagnosis/ship",
   },
 ];
+
 const bottomLivestockData = [
   {
     type: "Horse",
     description: "Lorem ipsum dolor sit amet.",
     image: require("../../../assets/diagosis-page-assets/horse.png"),
+    navigation: "diagnosis/horse",
   },
   {
     type: "Pig",
     description: "Lorem ipsum dolor sit amet.",
     image: require("../../../assets/diagosis-page-assets/pig.png"),
+    navigation: "diagnosis/pig",
   },
 ];
 
@@ -52,7 +57,6 @@ const extraFeatures = [
     image: require("../../../assets/diagosis-page-assets/hygiene.png"),
   },
 ];
-
 export default function Diagnosis() {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -70,7 +74,8 @@ export default function Diagnosis() {
             <TouchableOpacity
               key={index}
               style={styles.card}
-              onPress={() => router.push("/diagnosis/crop")}
+              onPress={() => router.push(item.navigation)}
+              // href="/diagnosis/crop"
             >
               <ImageBackground
                 source={item.image}
@@ -96,6 +101,7 @@ export default function Diagnosis() {
             <TouchableOpacity
               key={index}
               style={{ ...styles.card, flexBasis: index == 0 ? "40%" : "60%" }}
+              onPress={() => router.push(item.navigation)}
             >
               <ImageBackground
                 source={item.image}

@@ -3,13 +3,25 @@ import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Button, Scr
 import * as ImagePicker from 'expo-image-picker';
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { LinearGradient } from 'expo-linear-gradient';
+import { useLocalSearchParams } from 'expo-router';
 
-
+const imageData={
+  cattle : {image: require("../../../assets/diagosis-page-assets/cattle.png"),},
+  horse : {image: require("../../../assets/diagosis-page-assets/horse.png"),},
+  ship : {image: require("../../../assets/diagosis-page-assets/ship.png"),},
+  pig : {image: require("../../../assets/diagosis-page-assets/pig.png"),},
+  fruits : {image: require("../../../assets/diagosis-page-assets/cattle.png"),},
+  vegetables : {image: require("../../../assets/diagosis-page-assets/vegetables.png"),},
+  pulses : {image: require("../../../assets/diagosis-page-assets/pulses.png"),},
+  medicinal : {image: require("../../../assets/diagosis-page-assets/medicinal.png"),},
+  beverage : {image: require("../../../assets/diagosis-page-assets/beverage.png"),},
+  fibre : {image: require("../../../assets/diagosis-page-assets/fibre.png"),},
+}
 export default function Userinput() {
   const [image, setImage] = useState(null);
   const [symptoms, setSymptoms] = useState('');
   const [media, setMedia] = useState(null);
-
+  const { userinput } = useLocalSearchParams();
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -68,7 +80,7 @@ export default function Userinput() {
       {/* <Text style={styles.categoryText}>Fruits</Text> */}
       <TouchableOpacity style={styles.card}>
             <ImageBackground
-              source={require("../../assets/diagosis-page-assets/fruits.png")}
+              source={imageData[userinput].image}
               style={styles.cardImage}
             //   imageStyle={{ ...styles.imagePosition }}
             >
@@ -76,7 +88,7 @@ export default function Userinput() {
                 colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.4)"]}
                 style={styles.gradient}
               >
-                <Text style={styles.cardTitle}>Fruits</Text>
+                <Text style={styles.cardTitle}>{userinput}</Text>
                 {/* <Text style={styles.cardDescription}>
                   something
                 </Text> */}
@@ -286,7 +298,8 @@ const styles = StyleSheet.create({
     fontWeight : "bold",
     marginBottom : 8,
     paddingVertical : 20,
-    textAlign : 'center'
+    textAlign : 'center',
+    textTransform :'capitalize'
 },
   cardImage : {
     flex : 1,

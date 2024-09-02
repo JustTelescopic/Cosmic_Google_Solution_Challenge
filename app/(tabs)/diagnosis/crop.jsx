@@ -76,7 +76,23 @@ const CropTypeScreen = () => {
         </View>
         <View style={styles.cardContainer}>
           {/* Fruits row     */}
-          
+          <TouchableOpacity style={styles.card}>
+            <ImageBackground
+              source={fruitsData.image}
+              style={styles.cardImage}
+              imageStyle={{ ...styles.imagePosition }}
+            >
+              <LinearGradient
+                colors={["rgba(0,0,0,0.4)", "rgba(0,0,0,0.4)"]}
+                style={styles.gradient}
+              >
+                <Text style={styles.cardTitle}>{fruitsData.type}</Text>
+                <Text style={styles.cardDescription}>
+                  {fruitsData.description}
+                </Text>
+              </LinearGradient>
+            </ImageBackground>
+          </TouchableOpacity>
 
           {/* Medicinal row */}
 

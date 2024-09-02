@@ -3,7 +3,7 @@ import SelectLang from "./onBoarding/selectLang";
 import { Link, Redirect } from "expo-router";
 import Selectrole from "./onBoarding/selectrole";
 import HandleCamera from "./onBoarding/Camera";
-import Userinput from "./(tabs)/userinput";
+// import Userinput from "./(tabs)/[userinput]";
 
 
 export default function Page() {
