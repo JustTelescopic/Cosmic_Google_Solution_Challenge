@@ -10,11 +10,11 @@ export default function Page() {
   return (
     <View>
       <View style={styles.onboarding_container}>
-        <SelectLang />
-        {/* <Userinput/> */}
-        {/* <HandleCamera /> */}
+        {/* <SelectLang /> */}
         {/* <Selectrole/> */}
-        {/* <Redirect href="/home" /> */}
+        {/* <VerifyOTP /> */}
+        <Redirect href="/home" />
+
       </View>
     </View>
   );

@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const imageData={
   cattle : {image: require("../../../assets/diagosis-page-assets/cattle.png"),},
@@ -63,7 +64,11 @@ export default function Userinput() {
     }
   };
   return (
-    <ScrollView style={styles.container}>
+
+  // <SafeAreaView style={styles.safeArea}>
+    <ScrollView style={styles.container}
+        contentContainerStyle={{ paddingBottom: 150 }}
+    >
       <View style={styles.headerContainer}>
           <Text style={styles.header}>Crop Disease Diagnosis</Text>
           <View style={styles.underline} />
@@ -140,14 +145,19 @@ export default function Userinput() {
         </LinearGradient>
     </Pressable>
     </ScrollView>
+    //</SafeAreaView> */}
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea : {
+    flex : 1,
+  },
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: 'white',
+    marginBottom : 0
   },
   title: {
     fontSize: 24,
