@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Button, ScrollView, Pressable, ImageBackground } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Button, ScrollView, Pressable, ImageBackground,ActivityIndicator, TurboModuleRegistry } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import FeatherIcon from "react-native-vector-icons/Feather";
 import { LinearGradient } from 'expo-linear-gradient';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { ReportContext } from '../../../context';
+const apiUrl = process.env.EXPO_BACKEND_URI
+// import axios from 'axios';
+const livestockArray= [
+  "cattle",
+  "horse",
+  "ship",
+  "pig"
+]
+const cropArray = [
+  "fruits",
+  "vegetables",
+  "pulses",
+"medicinal",
+"beverage",
+"fibre",
+]
 const imageData={
   cattle : {image: require("../../../assets/diagosis-page-assets/cattle.png"),},
   horse : {image: require("../../../assets/diagosis-page-assets/horse.png"),},
@@ -23,6 +39,18 @@ export default function Userinput() {
   const [symptoms, setSymptoms] = useState('');
   const [media, setMedia] = useState(null);
   const { userinput } = useLocalSearchParams();
+  const [isProcessing,setIsProcessing] = useState(false)
+  const {report,setReport} = useContext(ReportContext)
+  const endpoint = livestockArray.includes(userinput) ? 'cattle' : "fruits" 
+  function handleImageUpload() {
+    const formData = new FormData();
+    console.log(media.uri)
+    formData.append('file', {
+      uri: media.uri,
+      type: 'image/jpeg', // Adjust the type according to the captured image type
+      name: 'photo.jpg',  // Name of the file
+    });
+  }
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -37,7 +65,131 @@ export default function Userinput() {
       console.log(result);
     }
   };
+  const imageToBase64 = async (uri) => {
+    try {
+      // Fetch the image data
+      const response = await fetch(uri);
+      const blob = await response.blob();
+  
+      // Create a FileReader instance
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // The result attribute contains the data as a base64 encoded string
+          const base64String = reader.result.split(',')[1];
+          resolve(base64String);
+        };
+        reader.onerror = (error) => {
+          reject(error);
+        };
+        // Read the blob as a Data URL (base64)
+        reader.readAsDataURL(blob);
+      });
+    } catch (error) {
+      console.error('Error converting image to base64:', error);
+      throw error;
+    }
+  };
+  const handleImageConversion = async () => {
+    try {
+      const uri = 'path/to/your/image.jpg'; // Replace with your actual image URI
+      const base64String = await imageToBase64(uri);
+      console.log('Base64 string:', base64String);
+      // Now you can use this base64String to send to your backend or for other purposes
+    } catch (error) {
+      console.error('Error in image conversion:', error);
+    }
+  };
+  const uriToFile = async (uri, name) => {
+    try {
+      // Fetch the image data from the URI
+      const response = await fetch(uri);
+      const blob = await response.blob();
+  
+      // Create a file object with the fetched data
+      // Note: `lastModified` and `webkitRelativePath` are not directly available, so you might need to set defaults
+      const file = new File([blob], name, {
+        type: blob.type,
+        lastModified: Date.now(),
+        webkitRelativePath: '',
+      });
+  
+      return file;
+    } catch (error) {
+      console.error('Error creating file from URI:', error);
+      throw error;
+    }
+  };
+  const convertUriToBlob = async (uri) => {
+    try {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+  
+      const file = new File([blob], 'image.jpg', { type: blob.type }); // Adjust the filename and type as needed
+      return file;
+    } catch (error) {
+      console.error('Error converting URI to File:', error);
+      return null;
+    }
+  };
+function sample() {
+  console.log(media.base64)
+}
+  const handleSubmit = async (event) => {
+    // event.preventDefault(); // Prevent the default form submission behavior if this is in a form
+    
+    // Create a FormData object
+    const uri = media.uri; // Your image URI
+    const name = 'photo.jpg'; 
+    console.log({uri})
+    const file = await uriToFile(uri, name);
+    // const file = await uriToFile(uri);
+    // const file = await convertUriToBlob(uri);
+    console.log('File object created:', JSON.stringify(file));
+     // Example of uploading the file using fetch
+     const formData = new FormData();
+    formData.append('file', {
+      uri: media.uri,
+      type: 'image/jpeg', // Adjust the type according to the captured image type
+      name: 'photo.jpg',  // Name of the file
+  });
+  formData.append('inputText',symptoms)
+    //  formData.append('file', file);
+    // console.log(JSON.stringify(formData))
+      // const base64String = await imageToBase64(media.);
+      // console.log('Base64 string:', base64String);
+      console.log({symptoms,endpoint})
+    try {
+      // Perform the POST request with fetch
+      setIsProcessing(true)
+      const response = await fetch(`http:// 192.168.75.188:8000/${endpoint}`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data', // This is automatically set by FormData, so it might be optional
+        },
+      });
+  
+      // if (!response.ok) {
+      //   // throw new Error('Network response was not ok');
+      // }
+  
+      // Parse the response
+      const responseData = await response.json();
+      console.log('New Post:', JSON.parse(responseData.response.candidates[0].content.parts[0].text,null,2));
+      reportJsonData = JSON.parse(responseData.response.candidates[0].content.parts[0].text,null,2)
+      setIsProcessing(false)
+      setReport(reportJsonData)
+      // Show success toast or perform additional actions
+      router.push('/reports')
 
+    } catch (error) {
+      console.error('Error:', JSON.stringify(error));
+      setIsProcessing(false)
+      
+      // Show error toast or perform additional actions
+    }
+  };
   const pickMedia = async () => {
     // Request camera permissions
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
@@ -61,6 +213,44 @@ export default function Userinput() {
 
     if (!result.canceled) {
       setMedia(result.assets[0]); // Set the media data
+      // console.log(result.assets);
+    }
+  };
+  const sendBase64ToBackend = async (base64String) => {
+    try {
+      const response = await fetch('http://192.168.125.188:8000/api/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          image: base64String,
+          // You can include other data here if needed
+          filename: 'image.jpg',
+          contentType: 'image/jpeg',
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.log('Server response:', result);
+      return result;
+    } catch (error) {
+      console.error('Error sending image to backend:', error);
+      throw error;
+    }
+  };
+  const usingBase64uploads = async () => {
+    try {
+      // const uri = media.uri;
+      // const base64String = await imageToBase64(uri);
+      const result = await sendBase64ToBackend(media.base64);
+      console.log('Upload successful:', result);
+    } catch (error) {
+      console.error('Error in image upload process:', error);
     }
   };
   return (
@@ -131,9 +321,10 @@ export default function Userinput() {
             />
       </View>
 
-      <Pressable
+      <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={() => {}}
+        onPress={handleSubmit}
+        disabled={isProcessing}
         >
         <LinearGradient
             colors={["#A8E063", "#56AB2F"]}
@@ -141,9 +332,11 @@ export default function Userinput() {
             end={{ x: 1, y: 1 }}
             style={styles.button}
         >
-            <Text style={styles.buttonText}>Generate Report</Text>
+           {!isProcessing ? (<Text style={styles.buttonText}>Generate Report</Text>)
+            : (<ActivityIndicator size="small" color="white" />)
+           }
         </LinearGradient>
-    </Pressable>
+    </TouchableOpacity>
     </ScrollView>
     //</SafeAreaView> */}
   );
@@ -294,7 +487,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 3,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center",height : 50
     // borderBottomColor : "#0F4C05",
     // borderBottomWidth : 1,
   },

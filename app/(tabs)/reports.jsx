@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FeatherIcon from "react-native-vector-icons/Feather";
+import { ReportContext } from '../../context';
 
 export default function DiagnosisReport() {
+  const {report,setReport} = useContext(ReportContext)
+  console.log(report)
+ if (!report) return <SafeAreaView ><Text>this is no report</Text></SafeAreaView>
   return (
     <SafeAreaView style={styles.safeArea}>
     <ScrollView contentContainerStyle={styles.container}
@@ -21,60 +25,51 @@ export default function DiagnosisReport() {
           <Text style={styles.textTitle}>Disease Recognized</Text>
           <View style={styles.textUnderline} />
         </View>
-        <Text style={styles.diseaseTitle}>Potato Late Blight</Text>
-        <Text style={styles.severity}>Medium Severity</Text>
-        <Text style={styles.description}>
-          Late Blight is a destructive fungal disease caused by *Phytophthora infestans* that affects potatoes and tomatoes. It is known to cause significant damage to the crop, leading to a loss in yield and quality. The best way to manage this disease is through resistant varieties and timely fungicide applications.
-        </Text>
+      { report['Disease Recognized'] && <Text style={styles.diseaseTitle}>{report['Disease Recognized']}</Text>}
+        {report['Severity']  && <Text style={styles.severity}>{report['Severity']} Severity</Text>}
+        {report['Description'] && <Text style={styles.description}>
+          {report['Description']}
+        </Text>}
       </View>
 
-      <View style={styles.sectionWrapper}>            
+     {report['Treatment Plan'] && <View style={styles.sectionWrapper}>            
         <View style={styles.section}>
           {/* <Text style={styles.sectionTitle}>Preventive Measures</Text> */}
           <View style={styles.underlinedHeader}>
             <Text style={{...styles.textTitle, color : "#0F4C05"}}>Treatment Plan</Text>
             <View style={styles.textUnderline} />
           </View>
-          <View style={styles.treatmentItem}>
-            <Text style={[styles.treatmentHeading,styles.text_right]}>Fungicide Application</Text>
-            <Text style={styles.treatmentDescription}>
-              Planting late blight-resistant potato varieties can reduce the severity of the disease.
-            </Text>
-          </View>
-          <View style={styles.treatmentItem}>
-            <Text style={styles.treatmentHeading}>Crop Rotation</Text>
-            <Text style={styles.treatmentDescription}>
-              Rotate crops to avoid planting potatoes in the same field consecutively, reducing disease pressure.
-            </Text>
-          </View>
-        </View>
-        </View>
+          {report['Treatment Plan'] ? report['Treatment Plan']?.map((item, index) => (
+            <View style={styles.treatmentItem} key={index}>
+              {/* <Text style={[styles.treatmentHeading,styles.text_right]}>{item.heading}</Text> */}
+              <Text style={styles.treatmentDescription}>{index+1}. {item}</Text>
+            </View>
+          )):<></>}
 
-      <View style={styles.sectionWrapper}>            
+        </View>
+        </View>}
+
+    {report['Preventive Measures'] &&  <View style={styles.sectionWrapper}>            
         <View style={{...styles.section,backgroundColor : 'white'}}>
           {/* <Text style={styles.sectionTitle}>Preventive Measures</Text> */}
           <View style={styles.underlinedHeader}>
             <Text style={{...styles.textTitle, color : "#0F4C05", alignSelf: 'flex-end'}}>Preventive Measures</Text>
             <View style={{...styles.textUnderline,alignSelf : 'flex-end'}} />
           </View>
-          <View style={styles.treatmentItem}>
-            <Text style={{...styles.treatmentHeading,textAlign : "right"}}>Use of Resistant Varieties</Text>
-            <Text style={{...styles.treatmentDescription, textAlign : "right"}}>
-              Planting late blight-resistant potato varieties can reduce the severity of the disease.
-            </Text>
-          </View>
-          <View style={styles.treatmentItem}>
-            <Text style={{...styles.treatmentHeading,textAlign : "right"}}>Crop Rotation</Text>
-            <Text style={{...styles.treatmentDescription, textAlign : "right"}}>
-              Rotate crops to avoid planting potatoes in the same field consecutively, reducing disease pressure.
-            </Text>
-          </View>
+          {report['Preventive Measures']?.map((item, index) => (
+            <View style={styles.treatmentItem} key={index}>
+              {/* <Text style={{...styles.treatmentHeading,textAlign : "right"}}>{item.title}</Text> */}
+              <Text style={{...styles.treatmentDescription, textAlign : "right"}}>
+              {index+1}. {item}
+              </Text>
+            </View>
+          ))}
         </View>
-        </View>
+        </View>}
         
-      <View style={styles.sectionWrapper}>            
+      {/* <View style={styles.sectionWrapper}>            
         <View style={{...styles.section,backgroundColor : 'white'}}>
-          {/* <Text style={styles.sectionTitle}>Preventive Measures</Text> */}
+          <Text style={styles.sectionTitle}>Preventive Measures</Text>
           <View style={styles.underlinedHeader}>
             <Text style={{...styles.textTitle, color : "#0F4C05"}}>Actionable Steps</Text>
             <View style={{...styles.textUnderline}} />
@@ -92,22 +87,37 @@ export default function DiagnosisReport() {
             </Text>
           </View>
         </View>
-        </View>
+        </View> */}
 
-      <View style={styles.section}>
+      {/* <View style={styles.section}>
         <Text style={styles.sectionTitle}>Actionable Steps</Text>
         <View style={styles.stepsContainer}>
           <Image source={{ uri: 'https://link-to-your-image1.png' }} style={styles.stepImage} />
           <Image source={{ uri: 'https://link-to-your-image2.png' }} style={styles.stepImage} />
         </View>
-      </View>
+      </View> */}
 
-      <View style={styles.section}>
+    { report['Additional Notes'] && <View style={styles.sectionWrapper}>            
+        <View style={{...styles.section,backgroundColor : 'rgba(175, 250, 174,0.29)'}}>
+          {/* <Text style={styles.sectionTitle}>Preventive Measures</Text> */}
+          <View style={styles.underlinedHeader}>
+            <Text style={{...styles.textTitle, color : "#0F4C05", alignSelf: 'center'}}>Additional Notes</Text>
+            <View style={{...styles.textUnderline,alignSelf : 'center'}} />
+          </View>
+          <View style={styles.treatmentItem}>
+            <Text style={{...styles.treatmentDescription, textAlign : "center"}}>
+              {report['Additional Notes']}
+            </Text>
+          </View>         
+        </View>
+      </View>}
+
+      {/* <View style={styles.section}>
         <Text style={styles.sectionTitle}>Additional Notes</Text>
         <Text style={styles.additionalNotes}>
           Under weather conditions, always check the local forecast and consider disease risk factors when planning fungicide applications.
         </Text>
-      </View>
+      </View> */}
 
       <View style={styles.footer}>
         <TouchableOpacity style={{...styles.button, justifyContent : 'flex-end'}}>
@@ -205,6 +215,7 @@ const styles = StyleSheet.create({
   },
   section: {
     backgroundColor: '#D4FFC4',
+    backgroundColor : "rgba(212,255,196,0.49)",
     borderRadius: 5,
     padding: 15,
     marginTop: 5,

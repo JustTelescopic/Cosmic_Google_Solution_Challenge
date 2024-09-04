@@ -11,9 +11,9 @@ export default function Page() {
     <View>
       <View style={styles.onboarding_container}>
         {/* <SelectLang /> */}
-        {/* <Selectrole/> */}
+        <Selectrole/>
         {/* <VerifyOTP /> */}
-        <Redirect href="/home" />
+        {/* <Redirect href="/home" /> */}
 
       </View>
     </View>

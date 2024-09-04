@@ -1,11 +1,14 @@
 import { Stack } from "expo-router";
+import {  ReportProvider } from "../context";
 
 export default function Layout(){
   return(
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="onBoarding" options={{ headerShown: false }} />
-    </Stack>
+    <ReportProvider>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="onBoarding" options={{ headerShown: false }} />
+      </Stack>
+    </ReportProvider>
   )
 }

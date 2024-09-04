@@ -65,6 +65,7 @@ export default function TabBar({ state, descriptors, navigation }) {
               name={icon[route.name]}
               size={24}
               color={isFocused ? "#245F1A" : "#222"}
+              // #BAE5AC
             />
             <Text
               style={{
@@ -100,6 +101,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     paddingVertical: 6,
-    margin: 5,
+    margin: 1,
   },
 });
