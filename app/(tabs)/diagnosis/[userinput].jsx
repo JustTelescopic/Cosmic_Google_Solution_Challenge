@@ -27,7 +27,7 @@ const imageData={
   horse : {image: require("../../../assets/diagosis-page-assets/horse.png"),},
   ship : {image: require("../../../assets/diagosis-page-assets/ship.png"),},
   pig : {image: require("../../../assets/diagosis-page-assets/pig.png"),},
-  fruits : {image: require("../../../assets/diagosis-page-assets/cattle.png"),},
+  fruits : {image: require("../../../assets/diagosis-page-assets/fruits.png"),},
   vegetables : {image: require("../../../assets/diagosis-page-assets/vegetables.png"),},
   pulses : {image: require("../../../assets/diagosis-page-assets/pulses.png"),},
   medicinal : {image: require("../../../assets/diagosis-page-assets/medicinal.png"),},
@@ -162,29 +162,34 @@ function sample() {
     try {
       // Perform the POST request with fetch
       setIsProcessing(true)
-      const response = await fetch(`http:// 192.168.75.188:8000/${endpoint}`, {
+      const response = await fetch(`http://192.168.75.188:8000/${endpoint}`, {
         method: 'POST',
         body: formData,
         headers: {
           'Content-Type': 'multipart/form-data', // This is automatically set by FormData, so it might be optional
         },
       });
-  
+      
       // if (!response.ok) {
       //   // throw new Error('Network response was not ok');
       // }
   
       // Parse the response
       const responseData = await response.json();
-      console.log('New Post:', JSON.parse(responseData.response.candidates[0].content.parts[0].text,null,2));
+      console.log('New Post:', responseData.response.candidates[0].content.parts[0].text,null,2);
       reportJsonData = JSON.parse(responseData.response.candidates[0].content.parts[0].text,null,2)
       setIsProcessing(false)
       setReport(reportJsonData)
       // Show success toast or perform additional actions
-      router.push('/reports')
+      if(livestockArray.includes(userinput))   {
+        router.push('/reports')
+      }else if(cropArray.includes(userinput)){
+        router.push('/cropreport')
+      }
 
     } catch (error) {
       console.error('Error:', JSON.stringify(error));
+      console.error('Error:', error);
       setIsProcessing(false)
       
       // Show error toast or perform additional actions
