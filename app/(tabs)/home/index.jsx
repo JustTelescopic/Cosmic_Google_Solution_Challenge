@@ -34,7 +34,7 @@ const HomePage = () => {
                   <View style={styles.cardContent}>
                     <View>
                       <Text style={styles.cardText}>
-                        Diagnose Livestock conveniently
+                        Diagnose Livestock convenientljy
                       </Text>
                       <Text
                         style={{

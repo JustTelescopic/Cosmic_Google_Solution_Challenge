@@ -162,7 +162,7 @@ function sample() {
     try {
       // Perform the POST request with fetch
       setIsProcessing(true)
-      const response = await fetch(`http://192.168.75.188:8000/${endpoint}`, {
+      const response = await fetch(`http://192.168.0.205:8000/${endpoint}`, {
         method: 'POST',
         body: formData,
         headers: {
