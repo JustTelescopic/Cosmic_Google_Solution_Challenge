@@ -56,3 +56,8 @@ Make sure your mobile device and laptop are connected to the same Wi-Fi network 
 3. Commit your changes (`git commit -m 'Add new feature'`).
 4. Push to the branch (`git push origin feature/new-feature`).
 5. Open a pull request.
+
+### Sever : 
+https://github.com/Harshal-3558/Farmer-Livestock-Management-Server
+### Frontend : 
+https://github.com/Harshal-3558/Farmer-Livestock-Management
