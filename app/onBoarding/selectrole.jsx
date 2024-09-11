@@ -21,11 +21,9 @@ const Selectrole = () => {
   const [role,setRole]= useState(null);
   const handleSelectRole = (roleType) => {
     setRole(prev =>roleType)    
-    // if (roleType === 'farmer') {
-    //   router.push('/tabs/diagnosis/crop')
-    // } else if (roleType === 'veterinarian') {
-    //   router.push('/tabs/diagnosis/livestock')
-    // }
+    if (roleType === 'veterinarian') {
+      router.push('/Veterinarian/Vethome')
+    } 
   }
   return (
     <View style={styles.container}>

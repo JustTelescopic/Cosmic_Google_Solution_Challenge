@@ -4,6 +4,7 @@ import { Link, Redirect } from "expo-router";
 import Selectrole from "./onBoarding/selectrole";
 import Profile from "./(tabs)/profile";
 import HandleCamera from "./onBoarding/Camera";
+import VeterinarianHomePage from "./Veterinarian/Vethome";
 // import Userinput from "./(tabs)/[userinput]";
 
 
@@ -13,6 +14,7 @@ export default function Page() {
       <View style={styles.onboarding_container}>
         {/* <SelectLang /> */}
         <Selectrole/>
+        {/* <VeterinarianHomePage /> */}
         {/* <Profile/> */}
         {/* <VerifyOTP /> */}
         {/* <Redirect href="/home" /> */}
