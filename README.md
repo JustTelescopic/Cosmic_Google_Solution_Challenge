@@ -2,6 +2,8 @@
 
 This project is an AI-powered mobile portal designed to help farmers manage the health of their crops and livestock. The platform allows farmers to submit images and descriptions of disease symptoms and signs for their animals or crops. The system generates suspected disease/condition reports, preventive measures, and alerts local veterinarians for potential interventions.
 
+![Image](https://github.com/user-attachments/assets/bc25e924-53eb-42dd-967c-19038a364b17)
+
 ## Features
 
 - AI-based disease detection for crops and livestock
@@ -60,4 +62,4 @@ Make sure your mobile device and laptop are connected to the same Wi-Fi network 
 ### Sever : 
 https://github.com/Harshal-3558/Farmer-Livestock-Management-Server
 ### Frontend : 
-https://github.com/Harshal-3558/Farmer-Livestock-Management
+https://github.com/JustTelescopic/Cosmic_Google_Solution_Challenge
