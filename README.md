@@ -2,13 +2,6 @@
 
 This project is an AI-powered mobile portal designed to help farmers manage the health of their crops and livestock. The platform allows farmers to submit images and descriptions of disease symptoms and signs for their animals or crops. The system generates suspected disease/condition reports, preventive measures, and alerts local veterinarians for potential interventions.
 
-<img src="https://github.com/user-attachments/assets/bc25e924-53eb-42dd-967c-19038a364b17" width="400"/>
-
-<img src="https://github.com/user-attachments/assets/a29a5781-c0bf-4e6c-a916-893aaf5a609a" width="400"/>
-
-<img src="https://github.com/user-attachments/assets/6ce739fe-8650-42c0-9708-49e640a16e47" width="400"/>
-
-
 ## Features
 
 - AI-based disease detection for crops and livestock
